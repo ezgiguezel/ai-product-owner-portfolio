@@ -175,10 +175,42 @@ A rough, outcome-oriented roadmap. Scope is refined continuously in the backlog.
 
 ## Product Backlog
 
-The product backlog lives in [`/backlog`](backlog/README.md). Each user story is a separate Markdown file (`FR-001.md` … `FR-015.md`).
+The product backlog lives in [`/backlog`](backlog/README.md). Each user story, epic and spike is a separate Markdown file (e.g. `FR-001.md`, `FR-008a.md`).
+
+- **Epics:** [FR-008 – Expand FitRight recommendations](backlog/FR-008.md) · [FR-013 – Return insights for Category Management](backlog/FR-013.md)
+- **Discovery backlog:** [`/backlog/discovery.md`](backlog/discovery.md) – ideas that need validation before they become stories
+- **Definition of Ready:** [`/docs/definition-of-ready.md`](docs/definition-of-ready.md)
 
 ---
 
 ## AI Workflows
 
-*Coming soon – this section will document how I use AI as a Product Owner (e.g. backlog refinement, story quality checks, acceptance criteria generation, stakeholder communication).*
+I use AI as an assistant in my day-to-day PO work – to prepare decisions, not to make them.
+
+### Weekly backlog quality check
+
+A **scheduled Claude Code task** reviews the complete backlog once a week, ahead of the refinement meeting. It checks every story against four criteria and writes a report to [`/reports`](reports/) – it does **not** change any backlog files.
+
+| Criterion | What is checked |
+|---|---|
+| **Format** | *As a … I want … so that …* with a concrete persona / role |
+| **Acceptance criteria** | Clear, testable *Given / When / Then* – including edge cases and fallbacks |
+| **Size** | INVEST; fits into one sprint (≤ 8 SP) – larger items are flagged as epics |
+| **Business value** | Benefit is clear and linked to a FitRight KPI |
+
+The report contains a status per story, improved story versions for everything that needs work and the top 3 recommendations for the next refinement meeting.
+
+### Results of the first run (2026-11-12)
+
+[Full report](reports/backlog-review-2026-11-12.md) · 15 stories reviewed:
+
+- ✅ **7 Ready** – only minor gaps (e.g. missing dependencies, external prerequisites such as a labeled test set or DPO sign-off).
+- ⚠️ **8 Need work:**
+  - all **5 intentionally weak stories** I had placed in the backlog as a test – vague items (FR-004 "Better size data", FR-010 "Smarter shopping", FR-015 "Improve recommendation quality") and oversized epics disguised as stories (FR-008 with 40 SP, FR-013 with 21 SP) – were detected, with concrete splits and rewrites;
+  - plus **3 additional gaps** in stories already marked Ready or Refined: FR-005 (A/B test without hypothesis and success metric), FR-006 (undefined exception and missing fallback) and FR-012 (undefined "no data" case, missing dependencies).
+
+### AI suggests, the PO decides
+
+The AI's output is a proposal. I review every recommendation and decide whether to accept, reject or partly accept it – and I document the reason. From the first run, I accepted most structural recommendations (epic splits, spike instead of a vague improvement story, Definition of Ready), but **rejected** two: a new size-chart story (not linked strongly enough to the goal of reducing returns) and removing placeholder story points (the team uses them for roadmap planning).
+
+➡️ All decisions and reasons: [PO Decision Log](docs/po-decision-log.md)
